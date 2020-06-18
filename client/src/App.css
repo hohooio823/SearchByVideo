@@ -1,0 +1,50 @@
+*{
+  font-family: 'Basier Circle', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body{
+    background-color: #f7f7f7;
+}
+.head{
+    color: #f05d5e;
+}
+.btn,.btn:hover {
+    background-color: #f05d5e;
+    padding:0;
+}
+.bg-success , .alert-danger  {
+    background-color: #ffe7de!important;
+}
+.progress-bar{
+   color : #0c5460
+}
+.progress{
+    align-items: center;
+    border-radius: 0;
+    background-color: #e7e3e3;
+    justify-content: space-evenly;
+    font-size: 1rem;
+}
+label{
+    margin: 0;
+}
+.file{
+    background-color:#fff;
+    border: 1px solid;
+    border-radius: 4px;
+}
+.file input{
+    background-color: inherit;
+    border: 0 black;
+    border-radius: 0;
+    text-align: center;
+}
+.file input:focus{
+    text-align: start;
+    padding-left:0.25rem
+}
+.file-label{
+    background-color: #e9ecef;
+    border-radius: 0px 4px 4px 0px;
+}
