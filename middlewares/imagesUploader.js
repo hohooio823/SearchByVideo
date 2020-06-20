@@ -12,7 +12,7 @@ const imagesUploader =async (file,res)=>{
   fs.unlink(`${__dirname}/../client/public/uploads/${file}`,(err)=>{
 console.log(err);    
   });
-  const i = [1,2,3,4,5,6,7,8,9,10,11,12,13];
+  const i = [1,2,3,4,5,6,7,8];
   const uploader = async (_file)=>{
     const formData  = new FormData();
     formData.append('type','url');
