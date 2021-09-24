@@ -7,7 +7,6 @@ const checkFile = (fileName)=>{
     const extArr = fileName.split('.');
     const size = stat.size;
     const ext = extArr[extArr.length-1];
-    console.log(ext)
     if(['m4v','avi','mkv','mpg','mp4','webm','flv','mov','wmv','mpeg','mpeg4','mgeps','3gpp','3gp'].includes(ext) ){
         if(size<2.5e+8){
             return('checked');

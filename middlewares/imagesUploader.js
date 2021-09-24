@@ -14,14 +14,21 @@ console.log(err);
   });
   const i = [1,2,3,4,5,6,7,8];
   const uploader = async (_file)=>{
-    const formData  = new FormData();
-    formData.append('type','url');
-    formData.append('image',fs.createReadStream(_file));
-    const req = await axios.post('https://api.imgur.com/3/upload'
-      ,formData._valuesToMeasure[0],{'headers': {
-        'Authorization': 'Client-ID cbb19b9e4e24bff'
-    }})
-		if(req.data != undefined){
+    const data  = new FormData();
+    data.append('image',fs.createReadStream(_file));
+
+    var config = {
+      method: 'post',
+      url: 'https://api.imgur.com/3/image',
+      headers: { 
+        'Authorization': 'Client-ID cbb19b9e4e24bff', 
+        ...data.getHeaders()
+      },
+      data : data
+    };
+
+    const req = await axios(config);
+    if(req.data != undefined){
       return links=[...links,req.data.data.link];
     }
   }

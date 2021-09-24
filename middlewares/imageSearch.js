@@ -6,14 +6,16 @@ const imageSearch = (urls,res)=>{
   let results = [];
   let count= 0;
 	const loop = async ()=>{
-		for(let i=0;i<urls.length;i++){
-      const response = await axios.get("https://images.google.com/searchbyimage?image_url="+encodeURI(urls[i])+"&encoded_image=&image_content=&filename=&hl=en-US",{ headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.0; rv:20.0) Gecko/20100101 Firefox/20.0'}  })
-      const $ = cheerio.load(response.data);
-      $('div.r').each((i,element)=>{
-        const link = $(element).find('a').attr('href')
-        results= [...results,link]
-      });
-  }
+    for(let i=0;i<urls.length;i++){
+      const response = await axios.get("https://images.google.com/searchbyimage?image_url="+encodeURI(urls[i])+"&encoded_image=&image_content=&filename=&hl=en-US",{headers:{
+          "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36",
+      }},)
+  let $ = await cheerio.load(response.data);
+    $(".yuRUbf > a").each((i, el) => {
+      results.push($(el).attr("href"));
+    });
+}
 }
   loop().then(()=>{
     let countof={};
@@ -26,7 +28,6 @@ const imageSearch = (urls,res)=>{
     countResults =Object.keys(countof).map(link=>({link,count:countof[link]}));
     countResults.sort((a,b)=>a.count-b.count);
     finalResults = countResults.map(url=>url.link,{} )
-    console.log(finalResults);
     res.send(finalResults)
   }
   )
@@ -34,3 +35,4 @@ const imageSearch = (urls,res)=>{
 module.exports = {
   imageSearch,
 }
+
